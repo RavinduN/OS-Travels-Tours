@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OS Travels & Tours - Explore Beautiful Sri Lanka</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header id="header">
+        <nav class="container">
+            <a href="#home" class="logo">
+                <i data-lucide="map-pin"></i>
+                <span>OS Travels & Tours</span>
+            </a>
+            <div class="nav-links">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#tours" class="nav-link">Tours</a>
+                <a href="#why-choose" class="nav-link">Why Us</a>
+                <a href="#gallery" class="nav-link">Gallery</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="mobile-toggle" id="mobileToggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- HERO -->
+    <section id="home" class="hero">
+        <video autoplay muted loop playsinline class="hero-video">
+            <source src="20198201-uhd_3840_2160_60fps.mp4" type="video/mp4">
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content fade-in">
+            <h1 class="hero-title">Explore Beautiful Sri Lanka</h1>
+            <p class="hero-subtitle">Couple Tours • Family Tours • Group Adventures</p>
+            <div class="hero-buttons">
+                <a href="#tours" class="btn-primary pulse">Explore Tours</a>
+                <a href="https://wa.me/94716412452" class="btn-secondary">
+                    Book via WhatsApp
+                </a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i data-lucide="chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- TOURS -->
+    <section id="tours">
+        <!-- Animated Background with Real Birds Video -->
+        <div class="tours-background">
+            <video autoplay muted loop playsinline class="birds-video birds-video-1">
+                <source src="https://cdn.pixabay.com/video/2022/11/07/138724-769661209_large.mp4" type="video/mp4">
+            </video>
+            <video autoplay muted loop playsinline class="birds-video birds-video-2">
+                <source src="https://cdn.pixabay.com/video/2020/05/12/39373-418842033_large.mp4" type="video/mp4">
+            </video>
+            <div class="cloud cloud-1">
+                <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 20 40 Q 20 25 35 25 Q 35 15 50 15 Q 65 15 65 25 Q 80 25 80 40 Z" fill="white" opacity="0.6"/>
+                </svg>
+            </div>
+            <div class="cloud cloud-2">
+                <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 20 40 Q 20 25 35 25 Q 35 15 50 15 Q 65 15 65 25 Q 80 25 80 40 Z" fill="white" opacity="0.5"/>
+                </svg>
+            </div>
+            <div class="cloud cloud-3">
+                <svg viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M 20 40 Q 20 25 35 25 Q 35 15 50 15 Q 65 15 65 25 Q 80 25 80 40 Z" fill="white" opacity="0.7"/>
+                </svg>
+            </div>
+        </div>
+        
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-on-scroll">Our Tour Packages</h2>
+                <p>Choose your travel experience</p>
+            </div>
+
+            <div class="tours-grid">
+                <div class="tour-card animate-on-scroll" data-delay="100">
+                    <div class="tour-image-wrapper">
+                        <img src="couple.jpg" alt="Couple Tours">
+                        <div class="tour-overlay">
+                            <i data-lucide="heart"></i>
+                        </div>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Couple Tours</h3>
+                        <p>Ella • Mirissa • Hill Country</p>
+                        <div class="tour-features">
+                            <span><i data-lucide="clock"></i> 5-7 Days</span>
+                            <span><i data-lucide="users"></i> 2 People</span>
+                        </div>
+                       <button class="btn-primary book-btn" data-tour="Couple Tour">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="tour-card animate-on-scroll" data-delay="200">
+                    <div class="tour-image-wrapper">
+                        <img src="group.jpg" alt="Group Tours">
+                        <div class="tour-overlay">
+                            <i data-lucide="users"></i>
+                        </div>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Group Tours</h3>
+                        <p>Yala • Knuckles • Kitulgala</p>
+                        <div class="tour-features">
+                            <span><i data-lucide="clock"></i> 3-5 Days</span>
+                            <span><i data-lucide="users"></i> 10+ People</span>
+                        </div>
+                       <button class="btn-primary book-btn" data-tour="Group Tours">Book Now</button>
+                    </div>
+                </div>
+
+                <div class="tour-card animate-on-scroll" data-delay="300">
+                    <div class="tour-image-wrapper">
+                        <img src="family.jpg" alt="Family Tours">
+                        <div class="tour-overlay">
+                            <i data-lucide="home"></i>
+                        </div>
+                    </div>
+                    <div class="tour-content">
+                        <h3>Family Tours</h3>
+                        <p>Kandy • Pinnawala • Bentota</p>
+                        <div class="tour-features">
+                            <span><i data-lucide="clock"></i> 4-6 Days</span>
+                            <span><i data-lucide="users"></i> 4-8 People</span>
+                        </div>
+                        <button class="btn-primary book-btn"data-tour="Family Tours">Book Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section id="why-choose" class="why-choose-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-on-scroll">Why Choose Us</h2>
+                <p>Your trusted travel partner in Sri Lanka</p>
+            </div>
+
+            <div class="why-grid">
+                <div class="why-card animate-on-scroll" data-delay="100">
+                    <div class="why-icon">
+                        <i data-lucide="shield-check"></i>
+                    </div>
+                    <h3>Licensed & Insured</h3>
+                    <p>Fully licensed tour operator with comprehensive travel insurance for your peace of mind</p>
+                </div>
+
+                <div class="why-card animate-on-scroll" data-delay="200">
+                    <div class="why-icon">
+                        <i data-lucide="star"></i>
+                    </div>
+                    <h3>Expert Guides</h3>
+                    <p>Professional and knowledgeable local guides who bring Sri Lanka's stories to life</p>
+                </div>
+
+                <div class="why-card animate-on-scroll" data-delay="300">
+                    <div class="why-icon">
+                        <i data-lucide="wallet"></i>
+                    </div>
+                    <h3>Best Prices</h3>
+                    <p>Competitive rates with no hidden charges. Quality service at affordable prices</p>
+                </div>
+
+                <div class="why-card animate-on-scroll" data-delay="400">
+                    <div class="why-icon">
+                        <i data-lucide="headphones"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer support during your entire journey with us</p>
+                </div>
+
+                <div class="why-card animate-on-scroll" data-delay="500">
+                    <div class="why-icon">
+                        <i data-lucide="calendar-check"></i>
+                    </div>
+                    <h3>Flexible Booking</h3>
+                    <p>Easy booking process with flexible cancellation and rescheduling options</p>
+                </div>
+
+                <div class="why-card animate-on-scroll" data-delay="600">
+                    <div class="why-icon">
+                        <i data-lucide="award"></i>
+                    </div>
+                    <h3>5+ Years Experience</h3>
+                    <p>Trusted by thousands of happy travelers from around the world</p>
+                </div>
+            </div>
+
+            <div class="stats-container animate-on-scroll">
+                <div class="stat-item">
+                    <div class="stat-number" data-count="5000">0</div>
+                    <div class="stat-label">Happy Travelers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="150">0</div>
+                    <div class="stat-label">Tour Packages</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="50">0</div>
+                    <div class="stat-label">Destinations</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-count="98">0</div>
+                    <div class="stat-label">Satisfaction Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-on-scroll">Travel Gallery</h2>
+                <p>Experience Sri Lanka through our journeys</p>
+            </div>
+
+            <div class="gallery-grid">
+                <img src="1.jpeg" alt="Gallery 1" class="gallery-image animate-on-scroll" data-delay="50">
+                <img src="2.jpeg" alt="Gallery 2" class="gallery-image animate-on-scroll" data-delay="100">
+                <img src="3.jpeg" alt="Gallery 3" class="gallery-image animate-on-scroll" data-delay="150">
+                <img src="4.jpeg" alt="Gallery 4" class="gallery-image animate-on-scroll" data-delay="200">
+                <img src="5.jpeg" alt="Gallery 5" class="gallery-image animate-on-scroll" data-delay="250">
+                <img src="6.jpeg" alt="Gallery 6" class="gallery-image animate-on-scroll" data-delay="300">
+                <img src="7.jpeg" alt="Gallery 7" class="gallery-image animate-on-scroll" data-delay="350">
+                <img src="8.jpeg" alt="Gallery 8" class="gallery-image animate-on-scroll" data-delay="400">
+                <img src="9.jpeg" alt="Gallery 9" class="gallery-image animate-on-scroll" data-delay="450">
+                <img src="10.jpeg" alt="Gallery 10" class="gallery-image animate-on-scroll" data-delay="500">
+                <img src="11.jpg" alt="Gallery 11" class="gallery-image animate-on-scroll" data-delay="550">
+                <img src="12.png" alt="Gallery 12" class="gallery-image animate-on-scroll" data-delay="600">
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="animate-on-scroll">Contact Us</h2>
+                <p>Start your Sri Lanka adventure today</p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i data-lucide="phone"></i>
+                        <div>
+                            <strong>Phone</strong>
+                            <p>+94 71 641 2452</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="mail"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p>ostravelsandtours@yahoo.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i data-lucide="map-pin"></i>
+                        <div>
+                            <strong>Location</strong>
+                            <p>Colombo, Sri Lanka</p>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i data-lucide="facebook"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="instagram"></i></a>
+                        <a href="#" class="social-icon"><i data-lucide="twitter"></i></a>
+                    </div>
+                </div>
+
+                <form class="contact-form animate-on-scroll" 
+      action="https://formsubmit.co/ravindunethmina2015@gmail.com" 
+      method="POST">
+
+    <input type="text" name="name" placeholder="Your Name" required>
+
+    <input type="email" name="email" placeholder="Your Email" required>
+
+    <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+
+    <button type="submit" class="btn-primary">Send Message</button>
+
+    <input type="hidden" name="_captcha" value="false">
+</form> 
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2026 OS Travels & Tours. All rights reserved.</p>
+            <p class="footer-tagline">Crafted with ❤️ in Sri Lanka</p>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP BUTTON -->
+    <a href="https://wa.me/94716412452" class="whatsapp" id="whatsappBtn">
+        <i data-lucide="message-circle"></i>
+        <span>WhatsApp</span>
+    </a>
+
+    <!-- LIGHTBOX FOR GALLERY -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">
+            <i data-lucide="x"></i>
+        </button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+            <i data-lucide="chevron-left"></i>
+        </button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">
+            <i data-lucide="chevron-right"></i>
+        </button>
+        <img src="" alt="Lightbox Image" id="lightboxImage">
+    </div>
+
+    <!-- SCRIPTS -->
+    <script src="script.js"></script>
+    <script>
+        lucide.createIcons();
+    </script>
+
+</body>
+</html> 
