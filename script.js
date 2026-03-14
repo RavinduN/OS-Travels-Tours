@@ -175,18 +175,27 @@ if (contactForm) {
     });
 }
 
-// Mobile Menu Toggle (for future implementation)
-const mobileToggle = document.getElementById('mobileToggle');
-if (mobileToggle) {
-    mobileToggle.addEventListener('click', () => {
-        const navLinks = document.querySelector('.nav-links');
-        // Toggle mobile menu (can be enhanced with a proper mobile menu)
-        alert('Mobile menu - to be implemented with responsive design');
-    });
+// Mobile Menu Toggle 
+const mobileToggle = document.getElementById("mobileToggle");
+const navMenu = document.getElementById("navMenu");
+
+if (mobileToggle && navMenu) {
+
+mobileToggle.addEventListener("click", () => {
+
+navMenu.classList.toggle("active");
+
+if(navMenu.classList.contains("active")){
+mobileToggle.innerHTML = '<i data-lucide="x"></i>';
+}else{
+mobileToggle.innerHTML = '<i data-lucide="menu"></i>';
 }
 
+lucide.createIcons();
 
+});
 
+}
 
 // WhatsApp Button Animation on Scroll
 const whatsappBtn = document.getElementById('whatsappBtn');
@@ -233,18 +242,18 @@ const navLinks = document.querySelectorAll('.nav-link');
 
 window.addEventListener('scroll', () => {
     let current = '';
-    
+
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        
+
         if (pageYOffset >= sectionTop - 200) {
             current = section.getAttribute('id');
         }
     });
-    
+
     navLinks.forEach(link => {
         link.classList.remove('active');
+
         if (link.getAttribute('href').substring(1) === current) {
             link.classList.add('active');
         }
@@ -272,4 +281,26 @@ window.open(url, "_blank");
 });
 
 });
+
+// Read More Toggle
+const readBtn = document.getElementById("readMoreBtn");
+const moreText = document.getElementById("moreText");
+
+if(readBtn){
+
+moreText.style.display = "none";
+
+readBtn.addEventListener("click", function(){
+
+if(moreText.style.display === "none"){
+moreText.style.display = "block";
+readBtn.textContent = "Show Less";
+}else{
+moreText.style.display = "none";
+readBtn.textContent = "Read More";
+}
+
+});
+
+}
 console.log('OS Travels & Tours - Interactive Website Loaded Successfully! 🌴');
