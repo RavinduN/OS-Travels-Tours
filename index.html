@@ -408,82 +408,82 @@
             lucide.createIcons();
         </script>
 
-        <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-    import { 
-        getFirestore, 
-        collection, 
-        addDoc, 
-        getDocs, 
-        deleteDoc, 
-        doc 
-    } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+       <script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { 
+    getFirestore, 
+    collection, 
+    addDoc, 
+    getDocs, 
+    doc,        // 🔹 needed for document references
+    getDoc,     // 🔹 needed to fetch admin doc
+    deleteDoc   // 🔹 needed to delete reviews
+} from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-    /* 🔥 YOUR FIREBASE CONFIG */
-    const firebaseConfig = {
+import { getFunctions, httpsCallable } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-functions.js";
+
+/* 🔥 FIREBASE CONFIG */
+const firebaseConfig = {
     apiKey: "AIzaSyAFNYMSExlLpM-5LHVho72PlhK4beG8xjI",
     authDomain: "os-travels-reviews.firebaseapp.com",
     projectId: "os-travels-reviews",
     storageBucket: "os-travels-reviews.firebasestorage.app",
-  messagingSenderId: "G-RKNREN07LB",
-  appId: "1:927558697680:web:6da04b353f0d8d5e00d4d5"
-    };
+    messagingSenderId: "G-RKNREN07LB",
+    appId: "1:927558697680:web:6da04b353f0d8d5e00d4d5"
+};
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const functions = getFunctions();
+const deleteReviewFn = httpsCallable(functions, "deleteReview");
 
-    /* ⭐ STAR RATING */
-    let selectedRating = 0;
-    const stars = document.querySelectorAll("#starRating span");
+/* ⭐ STAR RATING */
+let selectedRating = 0;
+const stars = document.querySelectorAll("#starRating span");
 
-    stars.forEach(star => {
-        star.addEventListener("click", () => {
-            selectedRating = star.getAttribute("data-value");
-
-            stars.forEach(s => s.classList.remove("active"));
-            star.classList.add("active");
-        });
-    });
-
-    /* ➕ ADD REVIEW */
-    document.getElementById("submitReview").addEventListener("click", async () => {
-
-        const name = document.getElementById("reviewName").value;
-        const message = document.getElementById("reviewMessage").value;
-
-        if (!name || !message || selectedRating == 0) {
-            return alert("Fill all fields + rating");
-        }
-
-        await addDoc(collection(db, "reviews"), {
-            name: name,
-            message: message,
-            rating: Number(selectedRating),
-            createdAt: new Date()
-        });
-
-        alert("Review Added!");
-
-        document.getElementById("reviewName").value = "";
-        document.getElementById("reviewMessage").value = "";
-        selectedRating = 0;
-
+stars.forEach(star => {
+    star.addEventListener("click", () => {
+        selectedRating = star.getAttribute("data-value");
         stars.forEach(s => s.classList.remove("active"));
-
-        loadReviews();
+        star.classList.add("active");
     });
+});
 
-    /* ⭐ GENERATE STARS */
-    function getStars(rating) {
-        let starsHTML = "";
-        for (let i = 1; i <= 5; i++) {
-            starsHTML += i <= rating ? "★" : "☆";
-        }
-        return starsHTML;
+/* ➕ ADD REVIEW */
+document.getElementById("submitReview").addEventListener("click", async () => {
+    const name = document.getElementById("reviewName").value;
+    const message = document.getElementById("reviewMessage").value;
+
+    if (!name || !message || selectedRating == 0) {
+        return alert("Fill all fields + rating");
     }
 
-    /* 📥 LOAD REVIEWS */
-   async function loadReviews() {
+    await addDoc(collection(db, "reviews"), {
+        name,
+        message,
+        rating: Number(selectedRating),
+        createdAt: new Date()
+    });
+
+    alert("Review Added!");
+    document.getElementById("reviewName").value = "";
+    document.getElementById("reviewMessage").value = "";
+    selectedRating = 0;
+    stars.forEach(s => s.classList.remove("active"));
+    loadReviews();
+});
+
+/* ⭐ GENERATE STARS */
+function getStars(rating) {
+    let starsHTML = "";
+    for (let i = 1; i <= 5; i++) {
+        starsHTML += i <= rating ? "★" : "☆";
+    }
+    return starsHTML;
+}
+
+/* 📥 LOAD REVIEWS */
+async function loadReviews() {
     const container = document.getElementById("reviewsContainer");
     container.innerHTML = "";
 
@@ -491,7 +491,7 @@
 
     querySnapshot.forEach(docSnap => {
         const data = docSnap.data();
-        const docId = docSnap.id; // Needed to delete
+        const docId = docSnap.id;
 
         container.innerHTML += `
             <div class="review-card">
@@ -500,50 +500,57 @@
                     ${getStars(data.rating)}
                 </div>
                 <p>${data.message}</p>
-                <button class="btn-delete" data-id="${docId}">Delete</button>
-            </div>
+<button class="btn-delete" data-id="${docId}">Delete</button>            </div>
         `;
     });
 
-    // Attach delete button listeners after rendering
-    document.querySelectorAll(".btn-delete").forEach(btn => {
-        btn.addEventListener("click", async () => {
-            const password = prompt("Enter admin password to delete review:");
+  // Attach delete button listeners
+document.querySelectorAll(".btn-delete").forEach(btn => {
+    btn.addEventListener("click", async () => {
+        const inputPassword = prompt("Enter admin password to delete review:");
+        if (!inputPassword) return;
 
-            const ADMIN_PASSWORD = "abc#1234"; // Replace with your password
+        try {
+            // Get admin password from Firestore (new path)
+            const adminDocRef = doc(db, "settings","admin"); // settings/admin
+            const adminDocSnap = await getDoc(adminDocRef);
 
-            if (password === ADMIN_PASSWORD) {
-                const id = btn.getAttribute("data-id");
-                await deleteDoc(doc(db, "reviews", id));
-                alert("Review deleted!");
-                loadReviews(); // Refresh list
-            } else {
-                alert("Incorrect password!");
+            if (!adminDocSnap.exists()) {
+                throw new Error("Admin password not set in Firestore!");
             }
-        });
+
+            const adminPassword = adminDocSnap.data().password;
+
+            if (inputPassword !== adminPassword) {
+                throw new Error("Incorrect password!");
+            }
+
+            // Password correct → delete review
+            const reviewId = btn.getAttribute("data-id");
+            await deleteDoc(doc(db, "reviews", reviewId));
+
+            alert("Review deleted!");
+            loadReviews(); // Refresh reviews
+        } catch (err) {
+            alert(err.message || "Failed to delete review");
+        }
     });
+});
 }
 
-    
+/* 🚀 INITIAL LOAD */
+loadReviews();
 
-    /* 🚀 INITIAL LOAD */
-    loadReviews();
-    const scrollContainer = document.getElementById("reviewsContainer");
+/* ⬅️➡️ SCROLL BUTTONS */
+const scrollContainer = document.getElementById("reviewsContainer");
 
 document.getElementById("scrollLeft").addEventListener("click", () => {
-    scrollContainer.scrollBy({
-        left: -320,
-        behavior: "smooth"
-    });
+    scrollContainer.scrollBy({ left: -320, behavior: "smooth" });
 });
 
 document.getElementById("scrollRight").addEventListener("click", () => {
-    scrollContainer.scrollBy({
-        left: 320,
-        behavior: "smooth"
-    });
+    scrollContainer.scrollBy({ left: 320, behavior: "smooth" });
 });
-    </script>
-
+</script>
     </body>
     </html> 
