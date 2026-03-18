@@ -303,6 +303,19 @@ readBtn.textContent = "Read More";
 });
 
 }
+const toggleBtn = document.getElementById("toggleReviews");
+const reviewsWrapper = document.querySelector(".reviews-wrapper");
+
+toggleBtn.addEventListener("click", () => {
+    reviewsWrapper.classList.toggle("visible");
+
+    // Update button text
+    if (reviewsWrapper.classList.contains("visible")) {
+        toggleBtn.textContent = "Hide Reviews";
+    } else {
+        toggleBtn.textContent = "Show Reviews";
+    }
+});
 
 
 console.log('OS Travels & Tours - Interactive Website Loaded Successfully! 🌴');
