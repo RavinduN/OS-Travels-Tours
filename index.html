@@ -298,6 +298,11 @@
                 <button id="submitReview" class="btn-primary">Submit Review</button>
             </div>
 
+            <!-- TOGGLE BUTTON -->
+<button id="toggleReviews" class="btn-primary" style="margin:20px 0;">
+    Show Reviews
+</button>
+
             <!-- DISPLAY -->
             <div class="reviews-wrapper">
    
@@ -486,6 +491,7 @@
 
     querySnapshot.forEach(docSnap => {
         const data = docSnap.data();
+        const docId = docSnap.id; // Needed to delete
 
         container.innerHTML += `
             <div class="review-card">
@@ -494,11 +500,29 @@
                     ${getStars(data.rating)}
                 </div>
                 <p>${data.message}</p>
+                <button class="btn-delete" data-id="${docId}">Delete</button>
             </div>
         `;
     });
-}
 
+    // Attach delete button listeners after rendering
+    document.querySelectorAll(".btn-delete").forEach(btn => {
+        btn.addEventListener("click", async () => {
+            const password = prompt("Enter admin password to delete review:");
+
+            const ADMIN_PASSWORD = "1234"; // Replace with your password
+
+            if (password === ADMIN_PASSWORD) {
+                const id = btn.getAttribute("data-id");
+                await deleteDoc(doc(db, "reviews", id));
+                alert("Review deleted!");
+                loadReviews(); // Refresh list
+            } else {
+                alert("Incorrect password!");
+            }
+        });
+    });
+}
 
     
 
