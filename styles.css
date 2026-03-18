@@ -999,8 +999,15 @@ display:none;
 
 /* REVIEWS SLIDER */
 .reviews-wrapper {
-    position: relative;
+    transition: max-height 0.5s ease, opacity 0.5s ease;
+    max-height: 0;   /* start hidden */
+    opacity: 0;      /* start hidden */
     overflow: hidden;
+}
+
+.reviews-wrapper.visible {
+    max-height: 1000px; /* adjust for your content */
+    opacity: 1;
 }
 
 .reviews-slider {
@@ -1017,17 +1024,37 @@ display:none;
 }
 
 /* REVIEW CARD */
+/* Review Card Delete Button */
 .review-card {
     flex: 0 0 300px; /* Fixed width */
     background: #f8f9fa;
-    padding: 20px;
+    padding: 20px 20px 40px 20px; /* extra bottom padding for button */
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    word-wrap: break-word;  /* Wrap long text */
-    white-space: normal;    /* Prevent one-line overflow */
+    word-wrap: break-word;
+    white-space: normal;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative; /* for absolute positioning of button */
+}
+
+.review-card .btn-delete {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background-color: #f87171; /* red */
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.review-card .btn-delete:hover {
+    background-color: #ef4444;
 }
 
 /* Optional: Reviewer name & stars */
