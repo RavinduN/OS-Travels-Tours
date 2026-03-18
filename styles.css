@@ -957,19 +957,19 @@ line-height:1.7;
 
 #moreText{
 display:none;
-}
-/* REVIEWS */
+}/* REVIEWS SECTION */
 #reviews {
     background: #ffffff;
+    padding: 60px 20px;
 }
 
+/* REVIEW FORM */
 .review-form {
     max-width: 600px;
-    margin: auto;
+    margin: 0 auto 40px;
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-bottom: 40px;
 }
 
 .review-form input,
@@ -977,6 +977,7 @@ display:none;
     padding: 15px;
     border: 2px solid #e5e7eb;
     border-radius: 10px;
+    font-size: 16px;
 }
 
 /* STAR RATING */
@@ -996,21 +997,7 @@ display:none;
     color: #fbbf24;
 }
 
-/* REVIEW CARDS */
-.reviews-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
-}
-
-.review-card {
-    background: #f8f9fa;
-    padding: 20px;
-    border-radius: 15px;
-    position: relative;
-}
-
-
+/* REVIEWS SLIDER */
 .reviews-wrapper {
     position: relative;
     overflow: hidden;
@@ -1029,16 +1016,34 @@ display:none;
     display: none;
 }
 
+/* REVIEW CARD */
 .review-card {
-    min-width: 300px;
-    flex: 0 0 auto;
-    background: #fff;
+    flex: 0 0 300px; /* Fixed width */
+    background: #f8f9fa;
     padding: 20px;
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    word-wrap: break-word;  /* Wrap long text */
+    white-space: normal;    /* Prevent one-line overflow */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/* BUTTONS */
+/* Optional: Reviewer name & stars */
+.review-card .reviewer-name {
+    font-weight: bold;
+    color: #111;
+    font-size: 16px;
+}
+
+.review-card .review-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.6;
+}
+
+/* SCROLL BUTTONS */
 .scroll-btn {
     position: absolute;
     top: 50%;
@@ -1051,6 +1056,7 @@ display:none;
     cursor: pointer;
     border-radius: 50%;
     z-index: 10;
+    transition: all 0.3s ease;
 }
 
 .scroll-btn.left {
@@ -1063,4 +1069,22 @@ display:none;
 
 .scroll-btn:hover {
     background: #0284c7;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .review-card {
+        flex: 0 0 250px;
+    }
+
+    .scroll-btn {
+        font-size: 20px;
+        padding: 8px 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .review-card {
+        flex: 0 0 200px;
+    }
 }
