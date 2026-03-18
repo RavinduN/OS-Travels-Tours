@@ -303,4 +303,6 @@ readBtn.textContent = "Read More";
 });
 
 }
+
+
 console.log('OS Travels & Tours - Interactive Website Loaded Successfully! 🌴');
