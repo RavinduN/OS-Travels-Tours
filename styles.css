@@ -1024,19 +1024,30 @@ display:none;
 }
 
 /* REVIEW CARD */
-/* Review Card Delete Button */
+
 .review-card {
-    flex: 0 0 300px; /* Fixed width */
+    flex: 0 0 300px;
+    min-height: 180px;   /* minimum size */
+    max-height: 350px;   /* limit growth */
+
     background: #f8f9fa;
-    padding: 20px 20px 40px 20px; /* extra bottom padding for button */
+    padding: 20px;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    word-wrap: break-word;
-    white-space: normal;
+
     display: flex;
     flex-direction: column;
     gap: 10px;
-    position: relative; /* for absolute positioning of button */
+
+    overflow: hidden;
+}
+
+.review-card .review-text {
+    flex: 1;
+
+    overflow-y: auto;
+
+    word-break: break-all;
+    overflow-wrap: anywhere;
 }
 
 .review-card .btn-delete {
@@ -1064,12 +1075,10 @@ display:none;
     font-size: 16px;
 }
 
-.review-card .review-text {
-    font-size: 15px;
-    color: #555;
-    line-height: 1.6;
+.review-card .review-stars {
+    color: #fbbf24; /* yellow */
+    font-size: 18px;
 }
-
 
 /* SCROLL BUTTONS */
 .scroll-btn {
@@ -1083,16 +1092,16 @@ display:none;
     padding: 10px 15px;
     cursor: pointer;
     border-radius: 50%;
-    z-index: 10;
+    z-index: 5; /* lower than hero */
     transition: all 0.3s ease;
 }
 
 .scroll-btn.left {
-    left: 10px;
+    left: 5px;
 }
 
 .scroll-btn.right {
-    right: 10px;
+    right: 5px;
 }
 
 .scroll-btn:hover {
